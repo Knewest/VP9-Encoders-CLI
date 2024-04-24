@@ -1,5 +1,5 @@
 # VP9-Encoders-CLI
-A sophisticated VP9 encoder that utilises FFmpeg, Batch, and Powershell. This make the process of advanced and quick encoding possible.
+A sophisticated VP9 encoder that utilises FFmpeg, Batch, and Powershell. This makes the process of advanced and quick encoding possible.
 
 
 ## How to use?
