@@ -91,7 +91,7 @@ if %ERRORLEVEL% EQU 0 (
 )
 
 rem After the PowerShell script finishes, continue with the batch script:
-echo " "
+echo   
 echo The console will close automatically after 30 minutes...
 
 rem Wait for 30 minutes before closing:
