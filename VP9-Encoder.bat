@@ -97,9 +97,6 @@ echo The console will close automatically after 30 minutes...
 rem Wait for 30 minutes before closing:
 timeout /t 1800 >nul
 
-rem Kill the PowerShell process after 30 minutes:
-taskkill /f /im powershell.exe >nul 2>&1
-
 del VP9_Encoder.ps1
 exit
 
