@@ -71,7 +71,7 @@ echo     Write-Host " "
 echo     Write-Host "Video '$($video.Name)' encoded to VP9 with CQP %CQP% and saved as '$($outputFile)'."
 echo     Write-Host " "
 echo     Write-Host "Copyright (Boost Software License 1.0) 2024-2024 Knew"
-echo     Write-Host "https://github.com/Knewest"
+echo     Write-Host "https://github.com/Knewest/VP9-Encoders-CLI/"
 echo     return
 echo }
 ) > VP9_Encoder.ps1
@@ -91,13 +91,13 @@ if %ERRORLEVEL% EQU 0 (
 )
 
 rem After the PowerShell script finishes, continue with the batch script:
-echo   
+echo.
+del VP9_Encoder.ps1
 echo The console will close automatically after 30 minutes...
 
 rem Wait for 30 minutes before closing:
 timeout /t 1800 >nul
 
-del VP9_Encoder.ps1
 exit
 
-rem v1.2 of Knew's VP9 encoder.
+rem v1.3 of Knew's VP9 encoder.
