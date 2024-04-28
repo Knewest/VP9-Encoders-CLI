@@ -23,7 +23,7 @@ echo %ffmpegLocation% > "%~dp0FFmpegLocation.txt"
 set /p CQP=Enter the CQP number (lower values are higher quality (0-63)): 
 set /p DEADLINE=Set the deadline (quality) option (("good" is default) realtime, good, best): 
 set /p ENC-SPD=Set the encoding speed (lower values are slower (0-5 (0-8 for realtime))): 
-set /p THRDS=Set the amount of CPU threads to use:
+set /p THRDS=Set the amount of CPU threads to use: 
 
 (
 echo # Get the directory where the script is located
