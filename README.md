@@ -8,7 +8,7 @@ You add keep a batch script in a folder, add the video you wish to convert to it
 ![image](https://github.com/Knewest/VP9-Encoders-CLI/assets/94736474/0bab0607-4283-4980-91ff-9ecbe02d5162)
 
 ## Code:
-```js
+```bat
 @echo off
 
 rem Get the count of video files in the script directory:
