@@ -43,6 +43,6 @@ foreach ($video in $videos) {
     Write-Host "Video '$($video.Name)' encoded to VP9 with CQP 4 and saved as '$($outputFile)'."
     Write-Host " "
     Write-Host "Copyright (Boost Software License 1.0) 2024-2024 Knew"
-    Write-Host "https://github.com/Knewest"
+    Write-Host "https://github.com/Knewest/VP9-Encoders-CLI/"
     return
 }
