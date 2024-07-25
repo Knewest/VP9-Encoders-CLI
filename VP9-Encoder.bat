@@ -83,7 +83,6 @@ echo     if ($numAudioStreams -eq 0^) {
 echo         Rename-Item -Path ("$outputFile" + "temp_video" + ".webm"^) -NewName $outputFile
 echo         Write-Host " "
 echo         Write-Host "No audio found, skipping audio/video merge remux."
-echo         return
 echo     }
 echo     elseif ($numAudioStreams -gt 0^) {
 echo         # Merge audio and video:
@@ -120,7 +119,7 @@ if %ERRORLEVEL% EQU 0 (
 )
 
 rem After the PowerShell script finishes, continue with the batch script:
-echo    
+echo _________________________________________________________
 
 echo The console will close automatically after 30 minutes...
 
