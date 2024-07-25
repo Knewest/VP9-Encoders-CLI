@@ -5,7 +5,7 @@ $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $outputFolder = $scriptDir
 
 # Set FFmpeg directory path:
-$FFmpegDirectory = "C:\Codecs\LibFFmpegv4.2.3\bin\ffmpeg.exe                                                                                         "
+$FFmpegDirectory = "C:\Codecs\LibFFmpegv4.2.3\bin\ffmpeg.exe                                                                                              "
 
 # Get all video files in the script directory
 $videos = Get-ChildItem -Path $scriptDir -File | Where-Object { $_.Extension -match '\.(mp4|avi|mov|mkv|wmv|flv|webm|av1|m2ts|ts)$' }
@@ -13,7 +13,7 @@ $videos = Get-ChildItem -Path $scriptDir -File | Where-Object { $_.Extension -ma
 # Loop through each video file:
 foreach ($video in $videos) {
  # Define output file path and name
-    $outputFile = Join-Path -Path $outputFolder -ChildPath ($video.BaseName + "_xVP9_CQP-50_SPD-01_best.webm")
+    $outputFile = Join-Path -Path $outputFolder -ChildPath ($video.BaseName + "_xVP9_CQP-57_SPD-01_best.webm")
 
     # Get the number of audio streams:
     $audioStreams = & "$(Join-Path $([System.IO.Path]::GetDirectoryName($FFmpegDirectory)) 'ffprobe.exe')" -v error -select_streams a -show_entries stream=index -of csv=p=0 $video.FullName | Measure-Object -Line
@@ -36,17 +36,16 @@ foreach ($video in $videos) {
 
 
     # First pass for video encoding:
-    & "$(Join-Path $([System.IO.Path]::GetDirectoryName($FFmpegDirectory)) 'ffmpeg.exe')" -i $video.FullName -c:v libvpx-vp9 -pass 1 -b:v 0 -crf 50 -deadline best -threads 16 -cpu-used 1 -tile-columns 6 -frame-parallel 1 -lag-in-frames 25 -aq-mode 3 -g 640 -pix_fmt yuv444p -row-mt 1 -an -f null NUL
+    & "$(Join-Path $([System.IO.Path]::GetDirectoryName($FFmpegDirectory)) 'ffmpeg.exe')" -i $video.FullName -c:v libvpx-vp9 -pass 1 -b:v 0 -crf 57 -deadline best -threads 16 -cpu-used 1 -tile-columns 6 -frame-parallel 1 -lag-in-frames 25 -aq-mode 3 -g 640 -pix_fmt yuv444p -row-mt 1 -an -f null NUL
 
 
     # Compress video without audio using second pass:
-    & "$(Join-Path $([System.IO.Path]::GetDirectoryName($FFmpegDirectory)) 'ffmpeg.exe')" -i $video.FullName -c:v libvpx-vp9 -pass 2 -b:v 0 -crf 50 -deadline best -threads 16 -cpu-used 1 -tile-columns 6 -frame-parallel 1 -lag-in-frames 25 -aq-mode 3 -g 640 -pix_fmt yuv444p -row-mt 1 -an -y ("$outputFile" + "temp_video" + ".webm") -passlogfile "ffmpeg2pass-0"
+    & "$(Join-Path $([System.IO.Path]::GetDirectoryName($FFmpegDirectory)) 'ffmpeg.exe')" -i $video.FullName -c:v libvpx-vp9 -pass 2 -b:v 0 -crf 57 -deadline best -threads 16 -cpu-used 1 -tile-columns 6 -frame-parallel 1 -lag-in-frames 25 -aq-mode 3 -g 640 -pix_fmt yuv444p -row-mt 1 -an -y ("$outputFile" + "temp_video" + ".webm") -passlogfile "ffmpeg2pass-0"
 
     if ($numAudioStreams -eq 0) {
         Rename-Item -Path ("$outputFile" + "temp_video" + ".webm") -NewName $outputFile
         Write-Host " "
         Write-Host "No audio found, skipping audio/video merge remux."
-        return
     }
     elseif ($numAudioStreams -gt 0) {
         # Merge audio and video:
@@ -60,7 +59,7 @@ foreach ($video in $videos) {
 
     Write-Host " "
     Write-Host " "
-    Write-Host "Video '$($video.Name)' encoded to VP9 with CQP 50 and saved as '$($outputFile)'."
+    Write-Host "Video '$($video.Name)' encoded to VP9 with CQP 57 and saved as '$($outputFile)'."
     Write-Host " "
     Write-Host "Copyright (Boost Software License 1.0) 2024-2024 Knew"
     Write-Host "https://github.com/Knewest"
